@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.nupsea.flink
+package org.nupsea.flink.batch
 
 import org.apache.flink.api.scala._
 import org.nupsea.flink.schema.IreTree

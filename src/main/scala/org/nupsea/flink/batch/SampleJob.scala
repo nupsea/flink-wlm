@@ -1,4 +1,4 @@
-package org.nupsea.batch
+package org.nupsea.flink.batch
 
 import org.apache.flink.api.java.ExecutionEnvironment
 import collection.JavaConverters._
