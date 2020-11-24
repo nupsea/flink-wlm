@@ -14,6 +14,6 @@
 - Copy/Deploy the jar on your local standalone cluster.
 
 
-`./bin/flink run -c org.nupsea.batch.SampleJob flink-wlm.jar`
+`./bin/flink run -c org.nupsea.flink.batch.SampleJob flink-wlm.jar`
 
 - View the job runs in the Flink Dashboard.
