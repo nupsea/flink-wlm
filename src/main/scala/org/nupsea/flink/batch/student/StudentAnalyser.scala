@@ -78,7 +78,9 @@ object StudentAnalyser {
     val stuSubScore: DataSet[(String, String, Float)] = dsWithTotal
       .map(r => (r("student").toString, r("subject").toString, r("totalScore").asInstanceOf[Float]))
 
-    val highScorerPerSub = stuSubScore.groupBy(1).max(2)
+    val highScorerPerSub = stuSubScore.groupBy(1).maxBy(2)
+    // Providing max gives erroneous results as it
+    // computes the max without the group by
     highScorerPerSub.print()
 
   }
