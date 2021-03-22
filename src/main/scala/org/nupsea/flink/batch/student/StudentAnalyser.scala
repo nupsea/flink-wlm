@@ -58,13 +58,13 @@ object StudentAnalyser {
     //              (r1, r2) =>  Map(r1.getOrElse("student", "").toString -> (r1.getOrElse("totalScore", 0.0) + r2.getOrElse("totalScore", 0.0).toString))
     //            }
 
-    val stuScore: DataSet[(String, Float)] = dsWithTotal
-      .map(r => (r("student").toString, r("totalScore").asInstanceOf[Float]))
+    val stuScore: DataSet[(String, Float, Int)] = dsWithTotal
+      .map(r => (r("student").toString, r("totalScore").asInstanceOf[Float], 1.toInt))
 
 
     val stuAvg = stuScore.groupBy(0).reduce {
-      (r1, r2) => (r1._1, r1._2 + r2._2)
-    }
+      (r1, r2) => (r1._1, r1._2 + r2._2, r1._3 + r2._3)
+    }.map(x => s"Student ${x._1} averaged: ${x._2 / x._3}")
     stuAvg.print()
 
 
