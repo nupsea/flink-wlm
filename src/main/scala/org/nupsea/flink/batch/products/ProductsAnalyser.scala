@@ -1,7 +1,6 @@
-package org.nupsea.flink.batch
+package org.nupsea.flink.batch.products
 
 import org.apache.flink.api.scala.{ExecutionEnvironment, createTypeInformation}
-import java.util.Date
 
 object ProductsAnalyser {
 
@@ -15,7 +14,7 @@ object ProductsAnalyser {
     Keyboard,Microsoft
      */
     val prodDS = env.readCsvFile[(String, String)]("src/main/resources/DATA/product_vendor.csv", ignoreFirstLine = true)
-    prodDS.print()
+    //prodDS.print()
 
     /*
     ID,Customer,Product,Date,Quantity,Rate,Tags
@@ -23,7 +22,26 @@ object ProductsAnalyser {
     2,LinkedIn,Headset,2019/11/25,5,36.9,"Urgent:Pickup"
     */
     val ordersDS = env.readCsvFile[(Short, String, String, String, Short, Float, String)]("src/main/resources/DATA/sales_orders.csv", ignoreFirstLine = true)
-    env.execute("products_analysis")
+    //ordersDS.print()
+
+    /**
+     * Display product item count by vendor for each company.
+     */
+    val itemByVendor = ordersDS
+      .join(prodDS)
+      // 0 - based index keys
+      .where(2)
+      .equalTo(0) {
+        (order, prod) => (order._2, order._3, prod._2, order._5) // 1 - based index
+      }
+
+    //    (Apple,5,Logitech)
+    //    (LinkedIn,4,Logitech)
+
+    itemByVendor.groupBy(0, 2)
+      .sum(3)
+      .print()
+
   }
 }
 
