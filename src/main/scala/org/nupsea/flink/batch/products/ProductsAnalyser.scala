@@ -1,5 +1,6 @@
 package org.nupsea.flink.batch.products
 
+import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.api.scala.{ExecutionEnvironment, createTypeInformation}
 
 object ProductsAnalyser {
@@ -7,13 +8,16 @@ object ProductsAnalyser {
   def main(args: Array[String]): Unit = {
 
     val env = ExecutionEnvironment.getExecutionEnvironment
+    val config = ParameterTool.fromArgs(args)
+    val data = config.get("data")
+    print(s">>  Data directory: ${data}")
 
     /*
     Product,Vendor
     Mouse,Logitech
     Keyboard,Microsoft
      */
-    val prodDS = env.readCsvFile[(String, String)]("src/main/resources/DATA/product_vendor.csv", ignoreFirstLine = true)
+    val prodDS = env.readCsvFile[(String, String)](data + "/product_vendor.csv", ignoreFirstLine = true)
     //prodDS.print()
 
     /*
@@ -21,7 +25,7 @@ object ProductsAnalyser {
     1,Apple,Keyboard,2019/11/21,5,31.15,"Discount:Urgent"
     2,LinkedIn,Headset,2019/11/25,5,36.9,"Urgent:Pickup"
     */
-    val ordersDS = env.readCsvFile[(Short, String, String, String, Short, Float, String)]("src/main/resources/DATA/sales_orders.csv", ignoreFirstLine = true)
+    val ordersDS = env.readCsvFile[(Short, String, String, String, Short, Float, String)](data + "/sales_orders.csv", ignoreFirstLine = true)
     //ordersDS.print()
 
     /**
