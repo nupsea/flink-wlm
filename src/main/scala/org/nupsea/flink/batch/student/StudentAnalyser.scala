@@ -1,6 +1,6 @@
 package org.nupsea.flink.batch.student
 
-import com.typesafe.sslconfig.ssl.debug.FixLoggingAction
+import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.api.scala.{DataSet, ExecutionEnvironment, createTypeInformation}
 
 
@@ -9,6 +9,9 @@ object StudentAnalyser {
   def main(args: Array[String]): Unit = {
 
     val env = ExecutionEnvironment.getExecutionEnvironment
+    val config = ParameterTool.fromArgs(args)
+    val data = config.get("data")
+    print(s">>  Data directory: ${data}")
 
     /**
      * 1.
@@ -17,7 +20,7 @@ object StudentAnalyser {
      */
 
     val ds: DataSet[StudentScore] = env.readCsvFile[StudentScore](
-      "src/main/resources/DATA/student_scores.csv",
+      data + "/student_scores.csv",
       ignoreFirstLine = true)
 
     val dsWithTotal: DataSet[Map[String, Any]] = ds.map(r => {
