@@ -24,7 +24,11 @@
 
 `./bin/flink run -c org.nupsea.flink.batch.product.ProductsAnalyser flink-wlm-<ver>.jar --data <full-path-of-data-dir>`
 
+<<<<<<< HEAD
 - View the job runs in the Flink Dashboard.
 
 ###
 ###
+=======
+- View the job runs in the Flink Dashboard.
+>>>>>>> parent of 317a13c (test)
