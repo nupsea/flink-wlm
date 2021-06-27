@@ -27,8 +27,4 @@
 <<<<<<< HEAD
 - View the job runs in the Flink Dashboard.
 
-###
-###
 =======
-- View the job runs in the Flink Dashboard.
->>>>>>> parent of 317a13c (test)
