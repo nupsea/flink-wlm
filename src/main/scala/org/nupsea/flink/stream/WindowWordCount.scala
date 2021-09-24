@@ -4,7 +4,9 @@ import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows
 import org.apache.flink.streaming.api.windowing.time.Time
 
-
+/**
+ *  Run `nc -lk 9999` on your terminal and input words before running the program.
+ */
 object WindowWordCount {
 
   def main(args: Array[String]): Unit = {

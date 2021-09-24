@@ -18,13 +18,22 @@
 
 - Run the interested Job: 
 
+#### Batch Jobs:
+
 `./bin/flink run -c org.nupsea.flink.batch.SampleJob flink-wlm-<ver>.jar --data <full-path-of-data-dir>`
 
 `./bin/flink run -c org.nupsea.flink.batch.student.StudentAnalyser flink-wlm-<ver>.jar --data <full-path-of-data-dir>`
 
 `./bin/flink run -c org.nupsea.flink.batch.product.ProductsAnalyser flink-wlm-<ver>.jar --data <full-path-of-data-dir>`
 
-<<<<<<< HEAD
+#### Realtime Jobs:
+
+> Run `nc -lk 9999` on your terminal
+
+
+`./bin/flink run -c org.nupsea.flink.stream.WindowWordCount flink-wlm-<ver>.jar`
+
+
+Finally,
 - View the job runs in the Flink Dashboard.
 
-=======
