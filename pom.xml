@@ -92,6 +92,30 @@ under the License.
 		</dependency>
 		-->
 
+		<!-- Flink Kinesis connector -->
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-kinesis_${scala.binary.version}</artifactId>
+			<version>${flink.version}</version>
+		</dependency>
+
+
+		<!-- Utilities -->
+
+		<!-- For parsing the config files -->
+		<dependency>
+			<groupId>com.github.pureconfig</groupId>
+			<artifactId>pureconfig_${scala.binary.version}</artifactId>
+			<version>0.12.3</version>
+		</dependency>
+
+		<!-- AWS -->
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>secretsmanager</artifactId>
+			<version>2.12.0</version>
+		</dependency>
+
 		<!-- Add logging framework, to produce console output when running in the IDE. -->
 		<!-- These dependencies are excluded from the application JAR by default. -->
 		<dependency>
@@ -179,8 +203,14 @@ under the License.
 					</execution>
 				</executions>
 				<configuration>
+					<jvmArgs>
+						<jvmArg>-Xms512m</jvmArg>
+						<jvmArg>-Xmx2048m</jvmArg>
+						<jvmArg>-Xss64m</jvmArg>
+					</jvmArgs>
 					<args>
-						<arg>-nobootcp</arg>
+						<arg>-deprecation</arg>
+						<arg>-target:jvm-1.8</arg>
 					</args>
 				</configuration>
 			</plugin>
