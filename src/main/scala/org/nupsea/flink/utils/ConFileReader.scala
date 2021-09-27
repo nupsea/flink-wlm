@@ -3,7 +3,7 @@ package org.nupsea.flink.utils
 import com.typesafe.config.ConfigFactory
 import org.apache.flink.kinesis.shaded.com.amazonaws.auth.DefaultAWSCredentialsProviderChain
 import org.apache.flink.kinesis.shaded.com.amazonaws.services.s3.{AmazonS3ClientBuilder, AmazonS3URI}
-import org.nupsea.flink.utils.conf.{InvalidConfException, MyVar, MyVarBuilder, WorkflowCon}
+import org.nupsea.flink.utils.conf.{BaseCon, InvalidConfException, MyVar, MyVarBuilder, WorkflowCon}
 import com.typesafe.config.{Config, ConfigFactory, ConfigObject => TypesafeConfigObject, ConfigValue => TypesafeConfigValue}
 import pureconfig.generic.ProductHint
 

@@ -50,7 +50,7 @@ package object conf {
                     ) extends BaseCon
 
   case class WorkflowCon(flink: FlinkConf,
-                         src: DataSrc,
+                         src: Option[List[DataSrc]],
                          tgt: Option[List[DataTgt]]
                         )
 
